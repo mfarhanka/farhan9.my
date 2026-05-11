@@ -2,7 +2,10 @@ const root = document.body;
 
 if (root) {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const modalTriggers = document.querySelectorAll('[data-modal-target]');
+    const modals = document.querySelectorAll('[data-modal]');
     let rafId = 0;
+    let activeModal = null;
 
     const setBackgroundState = (clientX, clientY) => {
         const width = window.innerWidth || 1;
@@ -43,6 +46,29 @@ if (root) {
         setBackgroundState(window.innerWidth / 2, window.innerHeight / 2);
     };
 
+    const closeModal = () => {
+        if (!activeModal) {
+            return;
+        }
+
+        activeModal.classList.remove('is-open');
+        activeModal.setAttribute('aria-hidden', 'true');
+        root.classList.remove('modal-open');
+        activeModal = null;
+    };
+
+    const openModal = (modal) => {
+        if (!modal) {
+            return;
+        }
+
+        closeModal();
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        root.classList.add('modal-open');
+        activeModal = modal;
+    };
+
     window.addEventListener('pointermove', (event) => {
         moveBackground(event.clientX, event.clientY);
     }, { passive: true });
@@ -51,5 +77,82 @@ if (root) {
     window.addEventListener('resize', resetBackground);
     mediaQuery.addEventListener('change', resetBackground);
 
+    modalTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+            openModal(document.querySelector(trigger.dataset.modalTarget));
+        });
+    });
+
+    modals.forEach((modal) => {
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal || event.target.closest('[data-modal-close]')) {
+                closeModal();
+            }
+        });
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
+
     resetBackground();
 }
+*** Add File: c:\xampp\htdocs\farhan9.my\screenshot-preview.svg
+<svg width="1600" height="960" viewBox="0 0 1600 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="960" rx="36" fill="#0B0F0D"/>
+  <rect x="48" y="48" width="1504" height="864" rx="28" fill="#101713" stroke="#27362E" stroke-width="2"/>
+  <rect x="80" y="80" width="1440" height="68" rx="18" fill="#121C17"/>
+  <circle cx="122" cy="114" r="8" fill="#4ADE80"/>
+  <circle cx="150" cy="114" r="8" fill="#233C2E"/>
+  <circle cx="178" cy="114" r="8" fill="#233C2E"/>
+  <rect x="230" y="96" width="320" height="36" rx="12" fill="#18241E"/>
+  <rect x="1100" y="96" width="140" height="36" rx="12" fill="#18241E"/>
+  <rect x="1260" y="96" width="220" height="36" rx="12" fill="#183A28"/>
+  <rect x="80" y="180" width="300" height="680" rx="24" fill="#111A15"/>
+  <rect x="112" y="220" width="160" height="18" rx="9" fill="#4ADE80" fill-opacity="0.9"/>
+  <rect x="112" y="260" width="220" height="14" rx="7" fill="#25352C"/>
+  <rect x="112" y="314" width="236" height="88" rx="20" fill="#12221A" stroke="#284235" stroke-width="2"/>
+  <rect x="132" y="338" width="98" height="12" rx="6" fill="#4ADE80"/>
+  <rect x="132" y="364" width="180" height="10" rx="5" fill="#385346"/>
+  <rect x="112" y="426" width="236" height="88" rx="20" fill="#12221A"/>
+  <rect x="132" y="450" width="84" height="12" rx="6" fill="#E6F9EC"/>
+  <rect x="132" y="476" width="160" height="10" rx="5" fill="#385346"/>
+  <rect x="112" y="538" width="236" height="88" rx="20" fill="#12221A"/>
+  <rect x="132" y="562" width="110" height="12" rx="6" fill="#E6F9EC"/>
+  <rect x="132" y="588" width="188" height="10" rx="5" fill="#385346"/>
+  <rect x="412" y="180" width="520" height="204" rx="24" fill="#111A15"/>
+  <rect x="444" y="218" width="180" height="18" rx="9" fill="#E6F9EC"/>
+  <rect x="444" y="252" width="110" height="14" rx="7" fill="#2F463A"/>
+  <rect x="444" y="306" width="220" height="46" rx="18" fill="#173A28"/>
+  <rect x="476" y="320" width="120" height="16" rx="8" fill="#4ADE80"/>
+  <rect x="700" y="306" width="200" height="46" rx="18" fill="#15231C"/>
+  <rect x="732" y="320" width="94" height="16" rx="8" fill="#D7FBE3"/>
+  <rect x="964" y="180" width="556" height="204" rx="24" fill="#111A15"/>
+  <rect x="996" y="218" width="190" height="18" rx="9" fill="#E6F9EC"/>
+  <rect x="996" y="252" width="130" height="14" rx="7" fill="#2F463A"/>
+  <rect x="996" y="304" width="492" height="18" rx="9" fill="#203129"/>
+  <rect x="996" y="334" width="400" height="18" rx="9" fill="#203129"/>
+  <rect x="412" y="416" width="736" height="444" rx="24" fill="#111A15"/>
+  <rect x="444" y="454" width="210" height="18" rx="9" fill="#E6F9EC"/>
+  <rect x="444" y="488" width="140" height="14" rx="7" fill="#2F463A"/>
+  <rect x="444" y="544" width="672" height="54" rx="20" fill="#12221A" stroke="#284235" stroke-width="2"/>
+  <rect x="470" y="563" width="140" height="16" rx="8" fill="#4ADE80"/>
+  <rect x="726" y="558" width="180" height="24" rx="12" fill="#173A28"/>
+  <rect x="936" y="558" width="152" height="24" rx="12" fill="#183A28"/>
+  <rect x="444" y="624" width="672" height="54" rx="20" fill="#12221A"/>
+  <rect x="470" y="643" width="166" height="16" rx="8" fill="#D7FBE3"/>
+  <rect x="726" y="638" width="140" height="24" rx="12" fill="#15231C"/>
+  <rect x="444" y="704" width="672" height="54" rx="20" fill="#12221A"/>
+  <rect x="470" y="723" width="124" height="16" rx="8" fill="#D7FBE3"/>
+  <rect x="726" y="718" width="168" height="24" rx="12" fill="#15231C"/>
+  <rect x="1180" y="416" width="340" height="444" rx="24" fill="#111A15"/>
+  <rect x="1212" y="454" width="112" height="18" rx="9" fill="#E6F9EC"/>
+  <rect x="1212" y="488" width="200" height="14" rx="7" fill="#2F463A"/>
+  <circle cx="1350" cy="640" r="92" fill="#153624"/>
+  <circle cx="1350" cy="640" r="66" fill="#4ADE80"/>
+  <text x="1350" y="646" text-anchor="middle" fill="#08120C" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">75%</text>
+  <rect x="1212" y="766" width="150" height="16" rx="8" fill="#D7FBE3"/>
+  <rect x="1212" y="796" width="230" height="14" rx="7" fill="#2F463A"/>
+</svg>

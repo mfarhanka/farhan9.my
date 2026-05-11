@@ -128,12 +128,32 @@
                             <div>
                                 <h3 class="timeline-title">Payroll system</h3>
                                 <p class="timeline-text">2026. Currently working on building a payroll system and HR management system, integrating Telegram bot notifications, and creating a web-based app for employees to clock in and out with location enabled, plus claim management and leave application tracking.</p>
+                                <div class="project-actions">
+                                    <button class="btn btn-outline" type="button" data-modal-target="#screenshot-modal">View screenshot</button>
+                                </div>
                             </div>
                         </article>
                     </div>
                 </section>
             </section>
         </main>
+    </div>
+
+    <div class="screenshot-modal" id="screenshot-modal" aria-hidden="true" data-modal>
+        <div class="screenshot-modal__panel" role="dialog" aria-modal="true" aria-labelledby="screenshot-modal-title">
+            <div class="screenshot-modal__header">
+                <div>
+                    <p class="status-badge screenshot-modal__badge"><span class="dot"></span>Project Screenshot</p>
+                    <h2 id="screenshot-modal-title">Payroll system preview</h2>
+                </div>
+                <button class="screenshot-modal__close" type="button" aria-label="Close screenshot" data-modal-close>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="screenshot-modal__body">
+                <img class="screenshot-modal__image" src="screenshot-preview.svg" alt="Payroll system dashboard preview">
+            </div>
+        </div>
     </div>
 
     <script src="background.js"></script>

@@ -394,6 +394,13 @@ h2 {
     background: rgba(74, 222, 128, 0.08);
 }
 
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
 .experience-list {
     display: grid;
     gap: 0.9rem;
@@ -448,6 +455,92 @@ h2 {
     color: #888;
     font-size: 0.96rem;
     line-height: 1.65;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+.screenshot-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    background: rgba(5, 8, 7, 0.72);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.screenshot-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.screenshot-modal__panel {
+    width: min(100%, 920px);
+    max-height: calc(100vh - 3rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(11, 15, 13, 0.96);
+    box-shadow: 0 30px 90px rgba(0,0,0,0.45);
+    transform: translateX(56px);
+    transition: transform 0.35s ease;
+}
+
+.screenshot-modal.is-open .screenshot-modal__panel {
+    transform: translateX(0);
+}
+
+.screenshot-modal__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.screenshot-modal__badge {
+    margin-bottom: 1rem;
+}
+
+.screenshot-modal__close {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    color: #f0f0f0;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+}
+
+.screenshot-modal__close:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(74, 222, 128, 0.35);
+    transform: translateY(-1px);
+}
+
+.screenshot-modal__body {
+    overflow: auto;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+}
+
+.screenshot-modal__image {
+    width: 100%;
+    display: block;
 }
 
 .page-header {
@@ -659,6 +752,21 @@ h2 {
         padding: 1.25rem;
     }
 
+    .screenshot-modal {
+        padding: 0.75rem;
+    }
+
+    .screenshot-modal__panel {
+        width: 100%;
+        max-height: calc(100vh - 1.5rem);
+        padding: 1rem;
+        border-radius: 20px;
+    }
+
+    .screenshot-modal__header {
+        align-items: center;
+    }
+
     .single-page-shell {
         min-height: auto;
         display: block;
@@ -691,7 +799,6 @@ h2 {
     }
 
     .timeline-item {
-        grid-template-columns: 1fr;
         gap: 0.4rem;
     }
 
