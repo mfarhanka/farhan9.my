@@ -143,15 +143,28 @@
         <div class="screenshot-modal__panel" role="dialog" aria-modal="true" aria-labelledby="screenshot-modal-title">
             <div class="screenshot-modal__header">
                 <div>
-                    <p class="status-badge screenshot-modal__badge"><span class="dot"></span>Project Screenshot</p>
-                    <h2 id="screenshot-modal-title">Payroll system preview</h2>
+                    <p class="status-badge screenshot-modal__badge"><span class="dot"></span>Project Screenshots</p>
+                    <h2 id="screenshot-modal-title">Payroll system previews</h2>
                 </div>
                 <button class="screenshot-modal__close" type="button" aria-label="Close screenshot" data-modal-close>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="screenshot-modal__body">
-                <img class="screenshot-modal__image" src="screenshot-preview.svg" alt="Payroll system dashboard preview">
+                <div class="screenshot-modal__gallery">
+                    <figure class="screenshot-modal__card">
+                        <img class="screenshot-modal__image" src="screenshot-preview.svg" alt="Payroll system dashboard overview">
+                        <figcaption class="screenshot-modal__caption">Dashboard overview</figcaption>
+                    </figure>
+                    <figure class="screenshot-modal__card">
+                        <img class="screenshot-modal__image" src="screenshot-preview-2.svg" alt="Payroll system HR and leave management view">
+                        <figcaption class="screenshot-modal__caption">HR and leave management</figcaption>
+                    </figure>
+                    <figure class="screenshot-modal__card">
+                        <img class="screenshot-modal__image" src="screenshot-preview-3.svg" alt="Payroll system employee attendance and claims view">
+                        <figcaption class="screenshot-modal__caption">Attendance and claims</figcaption>
+                    </figure>
+                </div>
             </div>
         </div>
     </div>
