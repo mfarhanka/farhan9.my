@@ -10,6 +10,12 @@ body {
     color: #f0f0f0;
     min-height: 100vh;
     overflow-x: hidden;
+    --pointer-x: 50%;
+    --pointer-y: 50%;
+    --parallax-x: 0px;
+    --parallax-y: 0px;
+    --grid-shift-x: 0px;
+    --grid-shift-y: 0px;
 }
 
 .maintenance-body {
@@ -25,6 +31,10 @@ body {
         linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
     background-size: 60px 60px;
+    transform: translate3d(var(--grid-shift-x), var(--grid-shift-y), 0) scale(1.04);
+    animation: grid-drift 18s ease-in-out infinite alternate;
+    transition: transform 160ms ease-out;
+    will-change: transform;
     z-index: 0;
 }
 
@@ -33,12 +43,40 @@ body {
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    background:
+        radial-gradient(circle, rgba(74, 222, 128, 0.2) 0%, rgba(34, 197, 94, 0.08) 34%, transparent 72%);
+    top: var(--pointer-y);
+    left: var(--pointer-x);
+    transform: translate3d(calc(-50% + var(--parallax-x)), calc(-50% + var(--parallax-y)), 0);
+    animation: glow-breathe 9s ease-in-out infinite alternate;
+    transition: top 180ms ease-out, left 180ms ease-out, transform 180ms ease-out;
+    filter: blur(10px);
+    opacity: 0.95;
+    will-change: top, left, transform;
     pointer-events: none;
     z-index: 0;
+}
+
+@keyframes grid-drift {
+    0% {
+        transform: translate3d(calc(var(--grid-shift-x) - 18px), calc(var(--grid-shift-y) - 12px), 0) scale(1.04);
+    }
+
+    100% {
+        transform: translate3d(calc(var(--grid-shift-x) + 18px), calc(var(--grid-shift-y) + 14px), 0) scale(1.08);
+    }
+}
+
+@keyframes glow-breathe {
+    0% {
+        opacity: 0.72;
+        filter: blur(16px);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(8px);
+    }
 }
 
 .container {
@@ -356,6 +394,11 @@ h2 {
     .page-shell,
     .maintenance-container {
         padding: 1.25rem;
+    }
+
+    .glow {
+        width: 420px;
+        height: 420px;
     }
 
     .page-header {
