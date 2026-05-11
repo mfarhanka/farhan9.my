@@ -363,6 +363,11 @@ h2 {
     margin-bottom: 1rem;
 }
 
+.sidebar-skills {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
 .sidebar-actions {
     justify-content: flex-start;
     margin-bottom: 0;
