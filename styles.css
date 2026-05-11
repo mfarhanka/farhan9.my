@@ -287,6 +287,16 @@ h2 {
     background: rgba(38, 169, 224, 0.16);
 }
 
+.btn-github {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.14);
+    color: #f3f4f6;
+}
+
+.btn-github:hover {
+    background: rgba(255,255,255,0.1);
+}
+
 .btn-outline {
     color: #f0f0f0;
     border-color: rgba(255,255,255,0.14);
