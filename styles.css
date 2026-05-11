@@ -394,6 +394,22 @@ h2 {
     background: rgba(74, 222, 128, 0.08);
 }
 
+.experience-list {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.experience-item {
+    padding: 1rem 1.1rem;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.experience-item .timeline-title {
+    margin-bottom: 0.45rem;
+}
+
 .project-timeline {
     display: grid;
     gap: 0.9rem;
