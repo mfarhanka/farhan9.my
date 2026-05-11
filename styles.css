@@ -315,6 +315,108 @@ h2 {
     padding: 2rem;
 }
 
+.single-page-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+}
+
+.single-layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.sidebar-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+}
+
+.sidebar-description {
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-facts {
+    display: grid;
+    gap: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-contact {
+    margin-bottom: 1rem;
+}
+
+.sidebar-actions {
+    justify-content: flex-start;
+    margin-bottom: 0;
+}
+
+.single-main {
+    gap: 1.5rem;
+}
+
+.hero-panel .page-description {
+    max-width: none;
+}
+
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+}
+
+.skill-tag {
+    color: #d7fbe3;
+    border-color: rgba(74, 222, 128, 0.24);
+    background: rgba(74, 222, 128, 0.08);
+}
+
+.project-timeline {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.timeline-item:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.timeline-year {
+    color: #4ade80;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.timeline-title {
+    color: #f3f3f3;
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+}
+
+.timeline-text {
+    color: #888;
+    font-size: 0.96rem;
+    line-height: 1.65;
+}
+
 .page-header {
     display: flex;
     align-items: center;
@@ -524,6 +626,19 @@ h2 {
         padding: 1.25rem;
     }
 
+    .single-page-shell {
+        min-height: auto;
+        display: block;
+    }
+
+    .single-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-panel {
+        position: static;
+    }
+
     .glow {
         width: 420px;
         height: 420px;
@@ -540,6 +655,11 @@ h2 {
 
     .page-panel {
         padding: 1.5rem;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
     }
 
     .stats-strip,
