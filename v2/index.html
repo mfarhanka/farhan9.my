@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farhan | Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        },
+                        cyber: {
+                            dark: '#0B0F19',
+                            card: '#161F30',
+                            accent: '#38BDF8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s standard, color 0.3s standard;
+        }
+        .terminal-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .terminal-scroll::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.3; }
+        }
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(128, 128, 128, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(128, 128, 128, 0.05) 1px, transparent 1px);
+        }
+        .dark .bg-grid {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-cyber-dark dark:text-slate-100 min-h-screen relative overflow-x-hidden">
+
+    <!-- Grid Background -->
+    <div class="absolute inset-0 bg-grid z-0 pointer-events-none"></div>
+    <div class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary-500/10 dark:bg-primary-500/5 blur-[120px] rounded-full pointer-events-none animate-pulse-slow"></div>
+    <div class="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-cyber-accent/10 dark:bg-cyber-accent/5 blur-[100px] rounded-full pointer-events-none animate-pulse-slow"></div>
+
+    <!-- Sticky Navigation -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/75 dark:bg-cyber-dark/75 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2 font-bold text-xl tracking-tight group">
+                <span class="text-primary-500 group-hover:rotate-12 transition-transform duration-300">⚡</span>
+                <span>farhan<span class="text-primary-500">9</span>.my</span>
+            </a>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#about" class="hover:text-primary-500 transition-colors">About</a>
+                <a href="#projects" class="hover:text-primary-500 transition-colors">Projects</a>
+                <a href="#skills" class="hover:text-primary-500 transition-colors">Skills</a>
+                <a href="#terminal" class="hover:text-primary-500 transition-colors">Terminal</a>
+                <a href="#contact" class="hover:text-primary-500 transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:ring-2 hover:ring-primary-500 transition-all" aria-label="Toggle Theme">
+                    <!-- Light Mode Icon -->
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    <!-- Dark Mode Icon -->
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-cyber-dark border-b border-slate-200 dark:border-slate-800 py-4 px-6 space-y-3">
+            <a href="#about" class="block text-lg hover:text-primary-500">About</a>
+            <a href="#projects" class="block text-lg hover:text-primary-500">Projects</a>
+            <a href="#skills" class="block text-lg hover:text-primary-500">Skills</a>
+            <a href="#terminal" class="block text-lg hover:text-primary-500">Terminal</a>
+            <a href="#contact" class="block text-lg hover:text-primary-500">Contact</a>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Hero Section -->
+        <section class="min-h-[calc(100vh-4rem)] flex flex-col justify-center py-12 md:py-24">
+            <div class="space-y-6 max-w-3xl">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-400 text-sm font-medium">
+                    <span class="w-2 h-2 rounded-full bg-primary-500 animate-ping"></span>
+                    <span id="hero-status">Available for new opportunities</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
+                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-emerald-400 to-cyber-accent" id="hero-name">Farhan</span>
+                </h1>
+                <h2 class="text-2xl sm:text-4xl font-bold text-slate-600 dark:text-slate-400" id="hero-title">
+                    Software Engineer & Web Developer
+                </h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed" id="hero-desc">
+                    I build reliable, responsive web applications, and digital solutions with a focus on performant code, rich interactive designs, and clean user experience.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#projects" class="px-6 py-3 rounded-lg bg-primary-500 text-white font-medium hover:bg-primary-600 shadow-lg shadow-primary-500/20 transition-all hover:-translate-y-0.5">
+                        Explore My Work
+                    </a>
+                    <a href="#terminal" class="px-6 py-3 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 font-medium font-mono text-sm flex items-center gap-2 transition-all hover:-translate-y-0.5">
+                        <span>$</span> launch_terminal
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 border-t border-slate-200 dark:border-slate-800">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="relative group max-w-sm mx-auto lg:mx-0">
+                        <div class="absolute -inset-1.5 bg-gradient-to-r from-primary-500 to-cyber-accent rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
+                        <div class="relative bg-white dark:bg-cyber-card p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                            <!-- Visual placeholder simulating code structures or a personal graphic -->
+                            <div class="bg-slate-100 dark:bg-slate-900 rounded-lg aspect-square flex flex-col justify-between p-6 font-mono text-xs text-slate-500">
+                                <div class="space-y-2">
+                                    <p class="text-primary-500">&lt;DeveloperProfile&gt;</p>
+                                    <p class="pl-4">Name: "Farhan"</p>
+                                    <p class="pl-4">Location: "Kuala Lumpur, MY"</p>
+                                    <p class="pl-4">Passion: ["Code", "Coffee", "OpenSource"]</p>
+                                    <p class="pl-4">Status: "Constantly Learning"</p>
+                                </div>
+                                <div class="space-y-1">
+                                    <p class="text-cyber-accent">import { Experience } from 'life';</p>
+                                    <p class="text-primary-500">&lt;/DeveloperProfile&gt;</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-6">
+                    <h2 class="text-3xl font-bold tracking-tight">About Me</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed" id="about-text-1">
+                        I am a technology enthusiast based in Malaysia who loves crafting beautiful user interfaces paired with robust backends. My passion lies in finding elegant, simple solutions to complex computational problems.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400" id="about-text-2">
+                        I've spent years honing my skills in modern web tech like React, Node.js, and cloud orchestration. I believe that performance, accessibility, and stellar UI architecture are not negotiable features, but standard requirements.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="p-4 bg-slate-100/50 dark:bg-slate-800/50 rounded-lg border border-slate-200/50 dark:border-slate-800/50">
+                            <p class="text-3xl font-extrabold text-primary-500">3+</p>
+                            <p class="text-sm text-slate-500">Years Experience</p>
+                        </div>
+                        <div class="p-4 bg-slate-100/50 dark:bg-slate-800/50 rounded-lg border border-slate-200/50 dark:border-slate-800/50">
+                            <p class="text-3xl font-extrabold text-cyber-accent">15+</p>
+                            <p class="text-sm text-slate-500">Projects Launched</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 border-t border-slate-200 dark:border-slate-800">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <h2 class="text-3xl font-bold tracking-tight mb-2">Featured Projects</h2>
+                    <p class="text-slate-600 dark:text-slate-400">A collection of custom systems and interactive experiments.</p>
+                </div>
+                <!-- Filters -->
+                <div class="flex flex-wrap gap-2 text-sm" id="project-filters">
+                    <!-- Dynamic filters are mounted here -->
+                </div>
+            </div>
+
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project cards are mounted here dynamically -->
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 border-t border-slate-200 dark:border-slate-800">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold tracking-tight mb-2">Skills & Toolkit</h2>
+                <p class="text-slate-600 dark:text-slate-400">The tools, languages, and technologies I work with daily.</p>
+            </div>
+            
+            <div id="skills-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Skill columns/cards are mounted dynamically here -->
+            </div>
+        </section>
+
+        <!-- Interactive Terminal Section -->
+        <section id="terminal" class="py-20 border-t border-slate-200 dark:border-slate-800">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold tracking-tight mb-2">Retro Interactive Terminal</h2>
+                <p class="text-slate-600 dark:text-slate-400">Interact with a simulated environment. Type commands to learn more about my background.</p>
+            </div>
+
+            <div class="w-full max-w-4xl mx-auto bg-[#0a0f1d] rounded-xl overflow-hidden shadow-2xl border border-slate-800">
+                <!-- Window Header -->
+                <div class="bg-[#111827] px-4 py-3 flex items-center justify-between border-b border-slate-800">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                    </div>
+                    <span class="font-mono text-xs text-slate-500">zsh — farhan@farhan9.my</span>
+                    <span class="w-12"></span>
+                </div>
+                <!-- Window Content -->
+                <div class="p-6 font-mono text-sm text-green-400 h-96 overflow-y-auto terminal-scroll flex flex-col justify-between" id="terminal-screen">
+                    <div id="terminal-history" class="space-y-2">
+                        <div class="text-slate-400">Welcome to Farhan's Interactive shell (v1.0.0)</div>
+                        <div class="text-slate-500 mb-4">Type <span class="text-primary-500 font-bold">help</span> to view a list of available commands.</div>
+                    </div>
+                    <!-- Prompt -->
+                    <div class="flex items-center space-x-2 mt-4 text-emerald-400">
+                        <span class="text-cyan-400">➜</span>
+                        <span class="text-purple-400">~</span>
+                        <span class="text-slate-300">$</span>
+                        <input type="text" id="terminal-input" class="flex-grow bg-transparent border-none outline-none focus:ring-0 text-slate-100 font-mono" placeholder="" autocomplete="off" autofocus>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 border-t border-slate-200 dark:border-slate-800">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-bold tracking-tight">Let's build something together</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Have an idea for a web app, looking for a freelance developer, or just want to grab coffee and talk tech in KL? Feel free to reach out using the form, or follow me on my social accounts!
+                    </p>
+                    <div class="space-y-4 pt-4" id="social-container">
+                        <!-- Social links generated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Contact Form Card -->
+                <div class="bg-white dark:bg-cyber-card rounded-xl p-8 border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-100 dark:shadow-none">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-primary-500 focus:outline-none transition-all">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" id="email" required class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-primary-500 focus:outline-none transition-all">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                            <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 focus:ring-2 focus:ring-primary-500 focus:outline-none transition-all"></textarea>
+                        </div>
+                        <button type="submit" id="form-submit-btn" class="w-full py-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white font-medium shadow-lg shadow-primary-500/20 transition-all flex items-center justify-center space-x-2">
+                            <span>Send Message</span>
+                            <span class="text-lg">✉</span>
+                        </button>
+                    </form>
+                    <!-- Form Success Message -->
+                    <div id="form-success" class="hidden text-center py-12 space-y-4">
+                        <div class="text-5xl text-primary-500">🎉</div>
+                        <h3 class="text-xl font-bold">Message Sent Successfully!</h3>
+                        <p class="text-slate-500 text-sm">Thanks for reaching out! I'll get back to you as soon as possible.</p>
+                        <button id="form-reset-btn" class="text-primary-500 hover:underline text-sm font-medium">Send another message</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-cyber-dark/50 py-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-slate-500 text-sm">
+            <p>&copy; 2026 farhan9.my. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#about" class="hover:text-primary-500">About</a>
+                <a href="#projects" class="hover:text-primary-500">Projects</a>
+                <a href="#terminal" class="hover:text-primary-500">Terminal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive script & Config -->
+    <script>
+        // ==========================================
+        //  PORTFOLIO CONFIGURATION BLOCK
+        //  Edit this data object to update the site!
+        // ==========================================
+        const CONFIG = {
+            profile: {
+                name: "Farhan",
+                title: "Full-Stack Software Engineer",
+                status: "Available for interesting gigs & roles",
+                description: "I construct performant web systems, intuitive interfaces, and optimized server-side logic. Specializing in modern JS/TS web ecosystems and API development.",
+                aboutText1: "I am a dedicated developer based in Malaysia who specializes in turning clean code into beautiful, functional user experiences. My goal is always to design applications that look premium and scale effectively.",
+                aboutText2: "With deep exposure to tools like React, Tailwind CSS, Node.js, and Docker, I work closely across the stack. Outside programming, I am a dedicated coffee learner, and I love running experiments with small web-servers."
+            },
+            skills: [
+                {
+                    category: "Frontend",
+                    icon: "🌐",
+                    items: ["HTML5 / CSS3", "JavaScript (ES6+)", "TypeScript", "React / Next.js", "Tailwind CSS"]
+                },
+                {
+                    category: "Backend",
+                    icon: "⚙️",
+                    items: ["Node.js", "Express", "Python / FastAPI", "GraphQL", "REST APIs"]
+                },
+                {
+                    category: "Database & Cloud",
+                    icon: "☁️",
+                    items: ["PostgreSQL", "MongoDB", "Redis", "Docker", "Vercel / AWS"]
+                },
+                {
+                    category: "Other Tools",
+                    icon: "🛠️",
+                    items: ["Git & GitHub", "Figma", "Linux Commands", "CI/CD Actions", "Postman"]
+                }
+            ],
+            projects: [
+                {
+                    title: "Malaysian Tech Job Finder",
+                    description: "An aggregator dashboard compiling tech developer opportunities within Kuala Lumpur and Selangor.",
+                    category: "fullstack",
+                    tags: ["Next.js", "PostgreSQL", "Tailwind"],
+                    liveUrl: "#",
+                    githubUrl: "#"
+                },
+                {
+                    title: "Glassmorphic Terminal Sandbox",
+                    description: "An elegant interactive online web terminal for simulating server diagnostics right from a browser window.",
+                    category: "frontend",
+                    tags: ["Vanilla JS", "Tailwind CSS", "Vite"],
+                    liveUrl: "#",
+                    githubUrl: "#"
+                },
+                {
+                    title: "EcoMetric API Tracker",
+                    description: "A secure REST API gateway calculating sustainability metrics, server energy usage, and green web offsets.",
+                    category: "backend",
+                    tags: ["FastAPI", "MongoDB", "Docker"],
+                    liveUrl: "#",
+                    githubUrl: "#"
+                },
+                {
+                    title: "Smart Budget Tracker",
+                    description: "Minimalist progressive web app allowing users to track budgets using secure local-first offline storage.",
+                    category: "frontend",
+                    tags: ["React", "IndexedDB", "PWA"],
+                    liveUrl: "#",
+                    githubUrl: "#"
+                }
+            ],
+            socials: [
+                { name: "GitHub", url: "https://github.com", icon: "🐙" },
+                { name: "LinkedIn", url: "https://linkedin.com", icon: "💼" },
+                { name: "Email", url: "mailto:hello@farhan9.my", icon: "✉️" }
+            ]
+        };
+
+        // ==========================================
+        //  INIT & RENDER ACTIONS
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            renderConfigData();
+            initTheme();
+            initMobileMenu();
+            initProjects();
+            initSkills();
+            initTerminal();
+            initContactForm();
+        });
+
+        function renderConfigData() {
+            document.getElementById('hero-name').innerText = CONFIG.profile.name;
+            document.getElementById('hero-title').innerText = CONFIG.profile.title;
+            document.getElementById('hero-desc').innerText = CONFIG.profile.description;
+            document.getElementById('hero-status').innerText = CONFIG.profile.status;
+            document.getElementById('about-text-1').innerText = CONFIG.profile.aboutText1;
+            document.getElementById('about-text-2').innerText = CONFIG.profile.aboutText2;
+
+            // Render Socials
+            const container = document.getElementById('social-container');
+            container.innerHTML = '';
+            CONFIG.socials.forEach(s => {
+                const link = document.createElement('a');
+                link.href = s.url;
+                link.target = "_blank";
+                link.className = "flex items-center space-x-3 p-4 bg-slate-100/50 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg border border-slate-200/50 dark:border-slate-800/50 transition-all group";
+                link.innerHTML = `
+                    <span class="text-xl group-hover:scale-110 transition-transform">${s.icon}</span>
+                    <span class="font-medium">${s.name}</span>
+                `;
+                container.appendChild(link);
+            });
+        }
+
+        // ==========================================
+        //  THEME CONTROLLER
+        // ==========================================
+        function initTheme() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                lightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                darkIcon.classList.remove('hidden');
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                lightIcon.classList.toggle('hidden');
+                darkIcon.classList.toggle('hidden');
+
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            });
+        }
+
+        // ==========================================
+        //  MOBILE NAVIGATION
+        // ==========================================
+        function initMobileMenu() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => menu.classList.add('hidden'));
+            });
+        }
+
+        // ==========================================
+        //  PROJECT RENDERING & FILTERING
+        // ==========================================
+        function initProjects() {
+            const grid = document.getElementById('projects-grid');
+            const filtersContainer = document.getElementById('project-filters');
+
+            // Unique categories
+            const categories = ['all', ...new Set(CONFIG.projects.map(p => p.category))];
+
+            // Render Filter Buttons
+            filtersContainer.innerHTML = '';
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = `px-4 py-2 rounded-lg font-medium transition-colors ${cat === 'all' ? 'bg-primary-500 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'}`;
+                btn.innerText = cat.charAt(0).toUpperCase() + cat.slice(1);
+                btn.dataset.filter = cat;
+                filtersContainer.appendChild(btn);
+
+                btn.addEventListener('click', (e) => {
+                    // Update Active Button Style
+                    filtersContainer.querySelectorAll('button').forEach(b => {
+                        b.className = 'px-4 py-2 rounded-lg font-medium transition-colors bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700';
+                    });
+                    btn.className = 'px-4 py-2 rounded-lg font-medium transition-colors bg-primary-500 text-white';
+                    
+                    filterProjects(cat);
+                });
+            });
+
+            // Initial Render of All Projects
+            filterProjects('all');
+        }
+
+        function filterProjects(category) {
+            const grid = document.getElementById('projects-grid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' 
+                ? CONFIG.projects 
+                : CONFIG.projects.filter(p => p.category === category);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "group bg-white dark:bg-cyber-card rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-lg shadow-slate-100 dark:shadow-none hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between";
+                
+                // Tech tags markup
+                const tagsMarkup = p.tags.map(tag => `<span class="text-xs font-semibold px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${tag}</span>`).join('');
+
+                card.innerHTML = `
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs uppercase font-extrabold tracking-wider text-primary-500">${p.category}</span>
+                            <div class="flex space-x-2">
+                                <a href="${p.githubUrl}" target="_blank" class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500" title="View Source">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                                </a>
+                                <a href="${p.liveUrl}" target="_blank" class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500" title="Launch App">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold tracking-tight">${p.title}</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">${p.description}</p>
+                    </div>
+                    <div class="p-6 border-t border-slate-100 dark:border-slate-800/50 flex flex-wrap gap-2">
+                        ${tagsMarkup}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // ==========================================
+        //  SKILLS SYSTEM
+        // ==========================================
+        function initSkills() {
+            const grid = document.getElementById('skills-grid');
+            grid.innerHTML = '';
+
+            CONFIG.skills.forEach(skillSet => {
+                const card = document.createElement('div');
+                card.className = "p-6 bg-white dark:bg-cyber-card rounded-xl border border-slate-200 dark:border-slate-800 space-y-4 hover:shadow-md transition-shadow";
+                
+                const listMarkup = skillSet.items.map(item => `
+                    <li class="flex items-center space-x-2 text-sm text-slate-600 dark:text-slate-400">
+                        <span class="text-primary-500 text-xs">■</span>
+                        <span>${item}</span>
+                    </li>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">${skillSet.icon}</span>
+                        <h3 class="font-bold text-lg">${skillSet.category}</h3>
+                    </div>
+                    <ul class="space-y-2">
+                        ${listMarkup}
+                    </ul>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // ==========================================
+        //  CLI TERMINAL PLAYGROUND
+        // ==========================================
+        function initTerminal() {
+            const input = document.getElementById('terminal-input');
+            const history = document.getElementById('terminal-history');
+            const screen = document.getElementById('terminal-screen');
+
+            // Set autofocus handler whenever user clicks on the terminal area
+            screen.addEventListener('click', () => {
+                input.focus();
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const cmd = input.value.trim();
+                    if (cmd) {
+                        handleCommand(cmd);
+                    }
+                    input.value = '';
+                }
+            });
+
+            function appendLine(content, classList = '') {
+                const line = document.createElement('div');
+                line.className = classList;
+                line.innerHTML = content;
+                history.appendChild(line);
+                screen.scrollTop = screen.scrollHeight;
+            }
+
+            function handleCommand(cmd) {
+                // Render prompt clone
+                appendLine(`<span class="text-cyan-400">➜</span> <span class="text-purple-400">~</span> <span class="text-slate-300">$</span> <span class="text-slate-100">${cmd}</span>`, "flex space-x-2");
+
+                const lowerCmd = cmd.toLowerCase().trim();
+
+                switch(lowerCmd) {
+                    case 'help':
+                        appendLine(`Available commands:<br>
+  <span class="text-primary-500">about</span>    - Display a brief bio of Farhan<br>
+  <span class="text-primary-500">skills</span>   - List specialized technology profiles<br>
+  <span class="text-primary-500">projects</span> - View featured production projects<br>
+  <span class="text-primary-500">socials</span>  - Show profiles and quick connection links<br>
+  <span class="text-primary-500">clear</span>    - Clear terminal shell output<br>
+  <span class="text-primary-500">secret</span>   - Run easter-egg diagnostic checks`, 'text-slate-400 py-1');
+                        break;
+                    case 'about':
+                        appendLine(`${CONFIG.profile.aboutText1}<br><br>${CONFIG.profile.aboutText2}`, 'text-slate-300 py-1');
+                        break;
+                    case 'skills':
+                        let skillsOutput = 'Highly proficient tech structures:<br>';
+                        CONFIG.skills.forEach(s => {
+                            skillsOutput += `<br><span class="text-cyber-accent font-bold">${s.category}:</span> ${s.items.join(', ')}`;
+                        });
+                        appendLine(skillsOutput, 'text-slate-300 py-1');
+                        break;
+                    case 'projects':
+                        let projOutput = 'Featured Deployments:<br>';
+                        CONFIG.projects.forEach(p => {
+                            projOutput += `<br>• <span class="text-primary-500 font-bold">${p.title}</span> - ${p.description} (${p.tags.join(', ')})`;
+                        });
+                        appendLine(projOutput, 'text-slate-300 py-1');
+                        break;
+                    case 'socials':
+                        let socialOutput = 'Connect with me:<br>';
+                        CONFIG.socials.forEach(s => {
+                            socialOutput += `• <span class="text-cyber-accent">${s.name}</span>: <a href="${s.url}" target="_blank" class="underline">${s.url}</a><br>`;
+                        });
+                        appendLine(socialOutput, 'text-slate-300 py-1');
+                        break;
+                    case 'clear':
+                        history.innerHTML = '<div class="text-slate-400">Shell cleared. Try typing "help".</div>';
+                        break;
+                    case 'secret':
+                        appendLine(`[i] Initiating server analysis...<br>
+[✓] Core systems OK<br>
+[✓] Node container cluster OK<br>
+[!] Coffee levels dropping below standard threshold<br>
+[✓] farhan9.my configured beautifully.<br>
+Welcome! You are a curious explorer! Let's build something awesome together.`, 'text-yellow-400 font-mono py-1');
+                        break;
+                    default:
+                        appendLine(`zsh: command not found: ${cmd}. Type <span class="text-primary-500 font-bold">help</span> to view lists.`, 'text-red-400');
+                }
+            }
+        }
+
+        // ==========================================
+        //  CONTACT FORM WITH SUCCESS FLOWS
+        // ==========================================
+        function initContactForm() {
+            const form = document.getElementById('contact-form');
+            const success = document.getElementById('form-success');
+            const resetBtn = document.getElementById('form-reset-btn');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Simulate sending message
+                const submitBtn = document.getElementById('form-submit-btn');
+                const prevText = submitBtn.innerHTML;
+                submitBtn.innerHTML = `<span>Sending...</span> <span class="animate-spin text-lg">⏳</span>`;
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    form.classList.add('hidden');
+                    success.classList.remove('hidden');
+                    
+                    // Reset submit button state
+                    submitBtn.innerHTML = prevText;
+                    submitBtn.disabled = false;
+                }, 1000);
+            });
+
+            resetBtn.addEventListener('click', () => {
+                form.reset();
+                success.classList.add('hidden');
+                form.classList.remove('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
