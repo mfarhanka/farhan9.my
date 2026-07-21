@@ -375,6 +375,13 @@ h2 {
 .link-actions form { margin: 0; }
 .btn-danger { color: #fca5a5; border-color: rgba(248,113,113,0.3); background: rgba(248,113,113,0.08); cursor: pointer; }
 .btn-danger:hover { background: rgba(248,113,113,0.16); }
+.ip-address { display: block; margin-top: 0.3rem; color: #6f8177; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+.click-history-row td { padding-top: 0; }
+.click-history { padding: 0.7rem 0.85rem; border-radius: 8px; background: rgba(255,255,255,0.025); }
+.click-history summary { color: #86efac; cursor: pointer; font-size: 0.84rem; }
+.click-history-list { display: grid; gap: 0.45rem; margin-top: 0.75rem; }
+.click-record { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0.65rem; border-top: 1px solid rgba(255,255,255,0.06); color: #96a49c; font-size: 0.82rem; }
+.click-record code { color: #c4f5d4; }
 
 .page-shell {
     position: relative;

@@ -9,6 +9,11 @@ $target = withLinkStore(function (array &$links) use ($code): ?string {
     }
 
     $links[$code]['clicks'] = (int) ($links[$code]['clicks'] ?? 0) + 1;
+    $links[$code]['click_log'] ??= [];
+    $links[$code]['click_log'][] = [
+        'clicked_at' => gmdate('c'),
+        'ip_address' => (string) ($_SERVER['REMOTE_ADDR'] ?? 'Unknown'),
+    ];
     $target = (string) ($links[$code]['target'] ?? 'main');
     return in_array($target, ['main', 'v2', 'v3'], true) ? $target : 'main';
 }, true);

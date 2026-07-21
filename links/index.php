@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require __DIR__ . '/store.php';
+date_default_timezone_set('Asia/Kuala_Lumpur');
 
 $createdCode = '';
 
@@ -101,7 +102,7 @@ $totalClicks = array_sum(array_map(fn(array $link): int => (int) ($link['clicks'
                 <?php else: ?>
                     <div class="link-table-wrap">
                         <table class="link-table">
-                            <thead><tr><th>Share link</th><th>Page</th><th>Note</th><th>Clicks</th><th>Created</th><th>Actions</th></tr></thead>
+                            <thead><tr><th>Share link</th><th>Page</th><th>Note</th><th>Clicks</th><th>Last click</th><th>Created</th><th>Actions</th></tr></thead>
                             <tbody>
                             <?php foreach ($links as $code => $link): ?>
                                 <tr>
@@ -109,6 +110,8 @@ $totalClicks = array_sum(array_map(fn(array $link): int => (int) ($link['clicks'
                                     <td><span class="target-badge"><?= htmlspecialchars(strtoupper((string) ($link['target'] ?? 'main')), ENT_QUOTES, 'UTF-8') ?></span></td>
                                     <td class="note-cell"><?php if ((string) ($link['note'] ?? '') !== ''): ?><?= htmlspecialchars((string) $link['note'], ENT_QUOTES, 'UTF-8') ?><?php else: ?><span class="muted">—</span><?php endif; ?></td>
                                     <td><strong><?= (int) ($link['clicks'] ?? 0) ?></strong></td>
+                                    <?php $clickLog = is_array($link['click_log'] ?? null) ? $link['click_log'] : []; $lastClick = $clickLog ? end($clickLog) : null; ?>
+                                    <td><?php if ($lastClick): ?><?= htmlspecialchars(date('d M Y, H:i:s', strtotime((string) $lastClick['clicked_at'])), ENT_QUOTES, 'UTF-8') ?><small class="ip-address"><?= htmlspecialchars((string) ($lastClick['ip_address'] ?? 'Unknown'), ENT_QUOTES, 'UTF-8') ?></small><?php else: ?><span class="muted">Never</span><?php endif; ?></td>
                                     <td><?= htmlspecialchars(date('d M Y, H:i', strtotime((string) ($link['created_at'] ?? 'now'))), ENT_QUOTES, 'UTF-8') ?></td>
                                     <td class="link-actions">
                                         <button class="btn btn-outline" type="button" data-copy="#link-<?= htmlspecialchars((string) $code, ENT_QUOTES, 'UTF-8') ?>">Copy</button>
@@ -119,6 +122,23 @@ $totalClicks = array_sum(array_map(fn(array $link): int => (int) ($link['clicks'
                                         </form>
                                     </td>
                                 </tr>
+                                <?php if ($clickLog): ?>
+                                    <tr class="click-history-row">
+                                        <td colspan="7">
+                                            <details class="click-history">
+                                                <summary>View <?= count($clickLog) ?> click record<?= count($clickLog) === 1 ? '' : 's' ?></summary>
+                                                <div class="click-history-list">
+                                                    <?php foreach (array_reverse($clickLog) as $click): ?>
+                                                        <div class="click-record">
+                                                            <span><?= htmlspecialchars(date('d M Y, H:i:s', strtotime((string) ($click['clicked_at'] ?? 'now'))), ENT_QUOTES, 'UTF-8') ?></span>
+                                                            <code><?= htmlspecialchars((string) ($click['ip_address'] ?? 'Unknown'), ENT_QUOTES, 'UTF-8') ?></code>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </details>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                             </tbody>
                         </table>
