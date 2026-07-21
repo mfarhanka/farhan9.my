@@ -58,6 +58,24 @@ function generateCode(array $links): string
     return $code;
 }
 
+function createTrackedLink(string $target = 'main', string $note = ''): string
+{
+    $target = in_array($target, ['main', 'v2', 'v3'], true) ? $target : 'main';
+    $note = trim($note);
+    $note = function_exists('mb_substr') ? mb_substr($note, 0, 200) : substr($note, 0, 200);
+
+    return withLinkStore(function (array &$links) use ($target, $note): string {
+        $code = generateCode($links);
+        $links[$code] = [
+            'target' => $target,
+            'note' => $note,
+            'clicks' => 0,
+            'created_at' => gmdate('c'),
+        ];
+        return $code;
+    }, true);
+}
+
 function linkUrl(string $code): string
 {
     $secure = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';

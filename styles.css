@@ -382,6 +382,8 @@ h2 {
 .click-history-list { display: grid; gap: 0.45rem; margin-top: 0.75rem; }
 .click-record { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0.65rem; border-top: 1px solid rgba(255,255,255,0.06); color: #96a49c; font-size: 0.82rem; }
 .click-record code { color: #c4f5d4; }
+.api-panel code { color: #b8f7cd; }
+.api-example { overflow-x: auto; padding: 1rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; background: rgba(0,0,0,0.25); color: #b8f7cd; line-height: 1.7; }
 
 .page-shell {
     position: relative;

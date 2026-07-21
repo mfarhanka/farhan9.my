@@ -16,21 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }, true);
     } else {
-        $target = (string) ($_POST['target'] ?? 'main');
-        $target = in_array($target, ['main', 'v2', 'v3'], true) ? $target : 'main';
-        $note = trim((string) ($_POST['note'] ?? ''));
-        $note = function_exists('mb_substr') ? mb_substr($note, 0, 200) : substr($note, 0, 200);
-
-        $createdCode = withLinkStore(function (array &$links) use ($target, $note): string {
-            $code = generateCode($links);
-            $links[$code] = [
-                'target' => $target,
-                'note' => $note,
-                'clicks' => 0,
-                'created_at' => gmdate('c'),
-            ];
-            return $code;
-        }, true);
+        $createdCode = createTrackedLink(
+            (string) ($_POST['target'] ?? 'main'),
+            (string) ($_POST['note'] ?? '')
+        );
     }
 }
 
@@ -88,6 +77,15 @@ $totalClicks = array_sum(array_map(fn(array $link): int => (int) ($link['clicks'
                         <button class="btn btn-outline" type="button" data-copy="#created-url">Copy</button>
                     </div>
                 <?php endif; ?>
+            </section>
+
+            <section class="page-panel api-panel">
+                <p class="status-badge"><span class="dot"></span>API</p>
+                <h2 class="section-heading">Generate by API</h2>
+                <p class="page-description">Send a POST request with JSON or form data. Supported targets are <code>main</code>, <code>v2</code>, and <code>v3</code>.</p>
+                <pre class="api-example"><code>curl -X POST <?= htmlspecialchars(dirname(linkUrl('CODE')) . '/api.php', ENT_QUOTES, 'UTF-8') ?> \
+  -H "Content-Type: application/json" \
+  -d '{"target":"v3","note":"Shared with client"}'</code></pre>
             </section>
 
             <section class="stats-strip link-stats" aria-label="Link statistics">
